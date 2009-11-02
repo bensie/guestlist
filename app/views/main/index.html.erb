@@ -4,7 +4,7 @@
   <%= link_to "Manage foods", foods_path %>
 </div>
 
-<h1><%= APP_CONFIG[:groom_name] %> &amp; <%= APP_CONFIG[:bride_name] %>'s Guest List</h1>
+<h1><%= ENV['groom_name'] || APP_CONFIG[:groom_name] %> &amp; <%= ENV['bride_name'] || APP_CONFIG[:bride_name] %>'s Guest List</h1>
 
 <% @groups.each do |group| %>
   <h2><%= group.name %> <small>(<%= pluralize(group.families.map(&:people_count).sum, "person") %> invited)</small></h2>
