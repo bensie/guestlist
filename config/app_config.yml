@@ -1,0 +1,11 @@
+development:
+  groom_name: Kyle
+  bride_name: Erica
+
+test:
+  groom_name: Kyle
+  bride_name: Erica
+
+production:
+  groom_name: Kyle
+  bride_name: Erica
