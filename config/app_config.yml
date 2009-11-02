@@ -16,5 +16,5 @@ production:
   groom_name: James
   bride_name: Allison
   enable_auth: 1
-  auth_username: example
-  auth_password: pass
+  #auth_username: example
+  #auth_password: pass
