@@ -5,7 +5,10 @@
   Total invitations: <%= Family.all.size %><br />
   Total coming: <%= Person.all(:conditions => { :attending => true } ).size %><br />
   Total declined: <%= Person.all(:conditions => { :attending => false } ).size %><br />
-  Total not yet responded: <%= Person.all(:conditions => { :attending => nil } ).size %><br /><br />
+  Total not yet responded: <%= Person.all(:conditions => { :attending => nil } ).size %><br />
+  A-List people: <%= Person.all(:joins => :family, :conditions => "families.list = 'A List'").size %><br />
+  B-List people: <%= Person.all(:joins => :family, :conditions => "families.list = 'B List'").size %><br />
+  <br />
   <% Food.all(:order => :name).each do |food| %>
     Total eating <%= food.name.downcase %>: <%= Person.all(:conditions => { :food_id => food.id }).size %><br />
   <% end %>
