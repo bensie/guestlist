@@ -1,0 +1,17 @@
+<div style="float:right">
+  <%= link_to "Add a group", new_group_path %> |
+  <%= link_to "Add a family", new_family_path %> |
+  <%= link_to "Manage foods", foods_path %>
+</div>
+
+<h1><%= APP_CONFIG[:groom_name] %> &amp; <%= APP_CONFIG[:bride_name] %>'s Guest List</h1>
+
+<% @groups.each do |group| %>
+  <h2><%= group.name %> <small>(<%= pluralize(group.families.map(&:people_count).sum, "person") %> invited)</small></h2>
+  
+  <% group.families.each do |family| %>
+  <p>
+    <%= link_to family.name, family %> (<%= pluralize(family.people_count, "person")%>)
+  </p>
+  <% end %>
+<% end %>

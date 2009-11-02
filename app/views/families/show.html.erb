@@ -1,0 +1,24 @@
+<% title "Family" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @family.name %>
+</p>
+<p>
+  <strong>People Count:</strong>
+  <%=h @family.people_count %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%=h @family.address %>
+</p>
+<p>
+  <strong>Group:</strong>
+  <%=h @family.group_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_family_path(@family) %> |
+  <%= link_to "Destroy", @family, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", families_path %>
+</p>

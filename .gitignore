@@ -1,0 +1,7 @@
+config/app_config.yml
+config/database.yml
+.DS_Store
+log/*.log
+tmp/**/*
+log/*.pid
+public/system/*

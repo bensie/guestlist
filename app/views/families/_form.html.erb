@@ -1,0 +1,35 @@
+<% form_for @family do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :class => "text medium" %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_area :address, :rows => 4, :cols => 50, :class => "textarea" %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone, :class => "text medium" %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email, :class => "text medium" %>
+  </p>
+  <p>
+    <%= f.label :group_id, "Group" %><br />
+    <%= f.select :group_id, Group.all(:order => :name).map { |g| [g.name, g.id] }, {:include_blank => "Select group..."}, :class => "drop" %>
+  </p>
+  <p>
+    <%= f.label :list, "List" %><br />
+    <%= f.select :list, [ "A List", "B List"], {}, :class => "drop" %>
+  </p>
+  
+  <h2>People in this family</h2>
+  <% f.fields_for :people do |pf| %>
+    <%= render :partial => 'person', :locals => { :f => pf } %>
+  <% end %>
+  <p><%= add_child_link "Add person", f, :people %></p>
+  
+  <p><%= f.submit "Save" %></p>
+<% end %>

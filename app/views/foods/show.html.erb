@@ -1,0 +1,12 @@
+<% title "Food" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @food.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_food_path(@food) %> |
+  <%= link_to "Destroy", @food, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", foods_path %>
+</p>

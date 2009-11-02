@@ -1,0 +1,11 @@
+<div class="fields">
+  <p>
+    <%= f.text_field :name, :class => "text short" %>
+    
+    <%= f.select :attending, [["Yes", true], ["No", false]], {:include_blank => "Attending?"}, :class => "drop" %>
+    
+    <%= f.select :food_id, Food.all(:order => :name).map { |food| [food.name, food.id] }, {:include_blank => "Select food..."}, :class => "drop" %>
+    
+    <%= remove_child_link "Remove", f %>
+  </p>
+</div>
