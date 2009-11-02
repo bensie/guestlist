@@ -1,11 +1,20 @@
 development:
   groom_name: James
   bride_name: Allison
+  enable_auth: 0
+  auth_username: example
+  auth_password: pass
 
 test:
   groom_name: James
   bride_name: Allison
+  enable_auth: 1
+  auth_username: example
+  auth_password: pass
 
 production:
   groom_name: James
   bride_name: Allison
+  enable_auth: 1
+  auth_username: example
+  auth_password: pass
