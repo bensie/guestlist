@@ -1,17 +1,24 @@
-<div style="float:right">
-  <%= link_to "Add a group", new_group_path %> |
-  <%= link_to "Add a family", new_family_path %> |
-  <%= link_to "Manage foods", foods_path %>
-</div>
+<% title((ENV['groom_name'] || APP_CONFIG[:groom_name]) + " and " + (ENV['bride_name'] || APP_CONFIG[:bride_name]) + "'s Guest List")%>
 
-<h1><%= ENV['groom_name'] || APP_CONFIG[:groom_name] %> &amp; <%= ENV['bride_name'] || APP_CONFIG[:bride_name] %>'s Guest List</h1>
+<p>
+  People invited: <%= Person.all.size %><br />
+  Total invitations: <%= Family.all.size %><br />
+  Total coming: <%= Person.all(:conditions => { :attending => true } ).size %><br />
+  Total declined: <%= Person.all(:conditions => { :attending => false } ).size %><br />
+  Total not yet responded: <%= Person.all(:conditions => { :attending => nil } ).size %><br /><br />
+  <% Food.all(:order => :name).each do |food| %>
+    Total eating <%= food.name.downcase %>: <%= Person.all(:conditions => { :food_id => food.id }).size %><br />
+  <% end %>
+</p>
 
 <% @groups.each do |group| %>
   <h2><%= group.name %> <small>(<%= pluralize(group.families.map(&:people_count).sum, "person") %> invited)</small></h2>
   
   <% group.families.each do |family| %>
-  <p>
-    <%= link_to family.name, family %> (<%= pluralize(family.people_count, "person")%>)
-  </p>
+  
+    <%= link_to family.name, family %> 
+    (<%= pluralize(family.people_count, "person")%>)
+    <br />
+
   <% end %>
 <% end %>

@@ -1,10 +1,11 @@
 class FamiliesController < ApplicationController
   def index
-    @families = Family.all
+    redirect_to root_path
   end
   
   def show
     @family = Family.find(params[:id])
+    redirect_to edit_family_path(@family)
   end
   
   def new

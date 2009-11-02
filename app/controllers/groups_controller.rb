@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
+    redirect_to edit_group_path(@group)
   end
   
   def new

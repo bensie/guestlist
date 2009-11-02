@@ -3,19 +3,12 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>People Count</th>
     <th>Address</th>
-    <th>Group</th>
   </tr>
   <% for family in @families %>
     <tr>
       <td><%=h family.name %></td>
-      <td><%=h family.people_count %></td>
       <td><%=h family.address %></td>
-      <td><%=h family.group_id %></td>
-      <td><%= link_to "Show", family %></td>
-      <td><%= link_to "Edit", edit_family_path(family) %></td>
-      <td><%= link_to "Destroy", family, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
