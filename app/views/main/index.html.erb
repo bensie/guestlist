@@ -17,7 +17,7 @@
 <% @groups.each do |group| %>
   <h2><%= group.name %> <small>(<%= pluralize(group.families.map(&:people_count).sum, "person") %> invited)</small></h2>
   
-  <% group.families.each do |family| %>
+  <% group.families.all(:order => :name).each do |family| %>
   
     <%= link_to family.name, family %> 
     (<%= pluralize(family.people_count, "person")%>)
