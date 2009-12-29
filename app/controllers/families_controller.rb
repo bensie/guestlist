@@ -3,6 +3,19 @@ class FamiliesController < ApplicationController
     redirect_to root_path
   end
   
+  def list
+    case params[:display]
+    when "invitations"
+      @families = Family.all(:order => :name, :include => :people)
+    when "a-list"
+      @families = Family.all(:order => :name, :include => :people, :conditions => "families.list = 'A List'")
+    when "b-list"
+      @families = Family.all(:order => :name, :include => :people, :conditions => "families.list = 'B List'")
+    else
+      @families = []
+    end
+  end
+  
   def show
     @family = Family.find(params[:id])
     redirect_to edit_family_path(@family)

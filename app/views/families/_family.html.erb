@@ -1,0 +1,5 @@
+<tr class="<%= cycle("odd", "even")%>">
+  <td><%=h family.name %></td>
+  <td><%= simple_format(family.address) %></td>
+  <td><%=h family.people.map(&:name).join(", ") %></td>
+</tr>

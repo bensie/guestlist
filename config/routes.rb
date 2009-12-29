@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :foods
 
-  map.resources :families
+  map.resources :families, :collection => { :list => :get }
 
   map.resources :groups
 

@@ -5,4 +5,7 @@ class Person < ActiveRecord::Base
   
   validates_presence_of :name
   
+  named_scope :attending, :conditions => { :attending => true }
+  named_scope :declined, :conditions => { :attending => false }
+  named_scope :not_responded, :conditions => { :attending => nil }
 end

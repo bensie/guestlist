@@ -158,3 +158,21 @@ textarea.max { width:99%;}
 	color: #d8122d;
 	font-weight: normal;
 }
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	clear: both;
+}
+
+table .odd {
+	background: #f5f5f5;
+}
+
+th {
+	text-align: left;
+}
+
+td, th {
+	padding: 5px;
+}

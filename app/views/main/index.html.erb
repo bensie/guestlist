@@ -2,20 +2,20 @@
 
 <p>
   People invited: <%= Person.all.size %><br />
-  Total invitations: <%= Family.all.size %><br />
-  Total coming: <%= Person.all(:conditions => { :attending => true } ).size %><br />
-  Total declined: <%= Person.all(:conditions => { :attending => false } ).size %><br />
-  Total not yet responded: <%= Person.all(:conditions => { :attending => nil } ).size %><br />
-  A-List people: <%= Person.all(:joins => :family, :conditions => "families.list = 'A List'").size %><br />
-  B-List people: <%= Person.all(:joins => :family, :conditions => "families.list = 'B List'").size %><br />
+  Total invitations: <%= link_to Family.all.size, list_families_path(:display => "invitations") %><br />
+  Total coming: <%= Person.attending.size %><br />
+  Total declined: <%= Person.declined.size %><br />
+  Total not yet responded: <%= Person.not_responded.size %><br />
+  A-List people: <%= link_to Person.all(:joins => :family, :conditions => "families.list = 'A List'").size, list_families_path(:display => "a-list") %><br />
+  B-List people: <%= link_to Person.all(:joins => :family, :conditions => "families.list = 'B List'").size, list_families_path(:display => "b-list") %><br />
   <br />
   <% Food.all(:order => :name).each do |food| %>
-    Total eating <%= food.name.downcase %>: <%= Person.all(:conditions => { :food_id => food.id }).size %><br />
+    Total eating <%= food.name.downcase %>: <%= food.people.size %><br />
   <% end %>
 </p>
 
 <% @groups.each do |group| %>
-  <h2><%= group.name %> <small>(<%= pluralize(group.families.map(&:people_count).sum, "person") %> invited)</small></h2>
+  <h2><%= group.name %> <span style="font-size: 10px">(<%= group.families.map(&:people_count).sum %> invited)</span></h2>
   
   <% group.families.all(:order => :name).each do |family| %>
     <%- if family.list == "A List" -%>
@@ -24,7 +24,7 @@
       <span style="font-size: 10px; color: red">B</span>
     <%- end -%>
     <%= link_to family.name, family %> 
-    (<%= pluralize(family.people_count, "person")%>)
+    <small>(<%= family.people_count %> invited)</small>
     <br />
 
   <% end %>
