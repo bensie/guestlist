@@ -4,5 +4,6 @@
 
 <p>
   <%= link_to "Show", @family %> |
-  <%= link_to "View All", families_path %>
+  <%= link_to "View All", families_path %> |
+  <%= link_to "Delete Family", @family, :method => :delete, :confirm => "Are you sure?" %>
 </p>

@@ -18,7 +18,11 @@
   <h2><%= group.name %> <small>(<%= pluralize(group.families.map(&:people_count).sum, "person") %> invited)</small></h2>
   
   <% group.families.all(:order => :name).each do |family| %>
-  
+    <%- if family.list == "A List" -%>
+      <span style="font-size: 10px; color: green">A</span>
+    <%- elsif family.list == "B List" -%>
+      <span style="font-size: 10px; color: red">B</span>
+    <%- end -%>
     <%= link_to family.name, family %> 
     (<%= pluralize(family.people_count, "person")%>)
     <br />
