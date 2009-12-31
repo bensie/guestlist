@@ -1,9 +1,9 @@
 <% title((ENV['groom_name'] || APP_CONFIG[:groom_name]) + " and " + (ENV['bride_name'] || APP_CONFIG[:bride_name]) + "'s Guest List")%>
 
 <p>
-  People invited: <%= Person.all.size %><br />
+  Total people: <%= Person.all.size %><br />
   Total invitations: <%= link_to Family.all.size, list_families_path(:display => "invitations") %><br />
-  Total coming: <%= Person.attending.size %><br />
+  Total attending: <%= Person.attending.size %><br />
   Total declined: <%= Person.declined.size %><br />
   Total not yet responded: <%= Person.not_responded.size %><br />
   A-List people: <%= link_to Person.all(:joins => :family, :conditions => "families.list = 'A List'").size, list_families_path(:display => "a-list") %><br />
@@ -15,7 +15,7 @@
 </p>
 
 <% @groups.each do |group| %>
-  <h2><%= group.name %> <span style="font-size: 10px">(<%= group.families.map(&:people_count).sum %> invited)</span></h2>
+  <h2><%= group.name %> <span style="font-size: 10px">(<%= group.families.map(&:people_count).sum %>)</span></h2>
   
   <% group.families.each do |family| %>
     
@@ -33,7 +33,7 @@
       <span style="font-size: 10px; color: red">B</span>
     <%- end -%>
     <%= link_to family.name, family %> 
-    <small>(<%= family.people_count %> invited)</small>
+    <small>(<%= family.people_count %> total, <%= family.people.attending.size %> attending)</small>
     <%= image_tag 'spinner.gif', :id => "spinner-admin-#{family.id}", :style => 'display: none' %>
     <br />
 
