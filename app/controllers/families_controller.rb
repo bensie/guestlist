@@ -50,6 +50,14 @@ class FamiliesController < ApplicationController
     end
   end
   
+  def toggle_misc_checkbox
+    @family = Family.find(params[:id])
+    @family.update_attribute(:misc_checkbox, params[:family][:misc_checkbox])
+    respond_to do |format|
+      format.js { head :ok }
+    end
+  end
+  
   def destroy
     @family = Family.find(params[:id])
     @family.destroy

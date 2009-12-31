@@ -17,7 +17,16 @@
 <% @groups.each do |group| %>
   <h2><%= group.name %> <span style="font-size: 10px">(<%= group.families.map(&:people_count).sum %> invited)</span></h2>
   
-  <% group.families.all(:order => :name).each do |family| %>
+  <% group.families.each do |family| %>
+    
+    <%= check_box_tag "family[misc_checkbox]", "1", family.misc_checkbox, 
+    		:onclick => remote_function(
+    	  		:url => url_for(toggle_misc_checkbox_family_path(family)),
+    	  		:method => :put,
+    	  		:before => "Element.show('spinner-admin-#{family.id}')",
+    	  		:complete => "Element.hide('spinner-admin-#{family.id}')",
+    	  		:with => "this.name + '=' + this.checked") %>
+  
     <%- if family.list == "A List" -%>
       <span style="font-size: 10px; color: green">A</span>
     <%- elsif family.list == "B List" -%>
@@ -25,6 +34,7 @@
     <%- end -%>
     <%= link_to family.name, family %> 
     <small>(<%= family.people_count %> invited)</small>
+    <%= image_tag 'spinner.gif', :id => "spinner-admin-#{family.id}", :style => 'display: none' %>
     <br />
 
   <% end %>
