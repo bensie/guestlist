@@ -8,4 +8,8 @@ class Family < ActiveRecord::Base
   
   accepts_nested_attributes_for :people, :allow_destroy => :true
   
+  def people_count
+    people.size
+  end
+  
 end
