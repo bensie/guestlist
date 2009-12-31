@@ -1,15 +1,15 @@
 <% title "Foods" %>
 
 <table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <% for food in @foods %>
+  <% @foods.each do |food| %>
     <tr>
-      <td><%=h food.name %></td>
-      <td><%= link_to "Show", food %></td>
-      <td><%= link_to "Edit", edit_food_path(food) %></td>
-      <td><%= link_to "Destroy", food, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>
+        <%= link_to h(food.name), food, :style => "font-size: 18px" %>
+        <small>
+          <%= link_to "Edit", edit_food_path(food) %>
+          <%= link_to "Delete", food, :confirm => 'Are you sure?', :method => :delete %>
+        </small>
+      </td>
     </tr>
   <% end %>
 </table>

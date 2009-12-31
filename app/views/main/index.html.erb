@@ -10,7 +10,7 @@
   B-List people: <%= link_to Person.all(:joins => :family, :conditions => "families.list = 'B List'").size, list_families_path(:display => "b-list") %><br />
   <br />
   <% Food.all(:order => :name).each do |food| %>
-    Total eating <%= food.name.downcase %>: <%= food.people.size %><br />
+    Total eating <%= food.name.downcase %>: <%= link_to food.people.size, food %><br />
   <% end %>
 </p>
 

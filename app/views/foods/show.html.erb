@@ -1,12 +1,10 @@
-<% title "Food" %>
+<% title "People Eating #{@food.name.titleize} (#{@food.people.size})" %>
+
+<table>
+  <%= render @food.people %>
+</table>
 
 <p>
-  <strong>Name:</strong>
-  <%=h @food.name %>
-</p>
-
-<p>
-  <%= link_to "Edit", edit_food_path(@food) %> |
-  <%= link_to "Destroy", @food, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", foods_path %>
+  <%= link_to "Edit this food", edit_food_path(@food) %> |
+  <%= link_to "Delete this food", @food, :confirm => 'Are you sure?', :method => :delete %>
 </p>
