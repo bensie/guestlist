@@ -2,11 +2,11 @@ class ApplicationController < ActionController::Base
 
   helper :all
   protect_from_forgery
-  
+
   before_filter :authenticate
-  
+
   protected
-  
+
   def authenticate
     if ENV['enable_auth'] == 1 || APP_CONFIG[:enable_auth] == 1
       authenticate_or_request_with_http_basic do |username, password|

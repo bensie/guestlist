@@ -2,7 +2,7 @@ class FamiliesController < ApplicationController
   def index
     redirect_to root_path
   end
-  
+
   def list
     case params[:display]
     when "invitations"
@@ -15,17 +15,17 @@ class FamiliesController < ApplicationController
       @families = []
     end
   end
-  
+
   def show
     @family = Family.find(params[:id])
     redirect_to edit_family_path(@family)
   end
-  
+
   def new
     @family = Family.new
     @person = @family.people.build
   end
-  
+
   def create
     @family = Family.new(params[:family])
     if @family.save
@@ -35,11 +35,11 @@ class FamiliesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @family = Family.find(params[:id])
   end
-  
+
   def update
     @family = Family.find(params[:id])
     if @family.update_attributes(params[:family])
@@ -49,7 +49,7 @@ class FamiliesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def toggle_misc_checkbox
     @family = Family.find(params[:id])
     @family.update_attribute(:misc_checkbox, params[:family][:misc_checkbox])
@@ -57,7 +57,7 @@ class FamiliesController < ApplicationController
       format.js { head :ok }
     end
   end
-  
+
   def destroy
     @family = Family.find(params[:id])
     @family.destroy
